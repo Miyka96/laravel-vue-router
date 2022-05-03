@@ -21,11 +21,11 @@
                         <td>{{ $post->id }}</td>
                         <td class="text-capitalize">{{ $post->title }}</td>
                         <td>{{ $post->slug }}</td>
-                        <td>{{ $post->published_at }}</td>
+                        <td>{{ $post->published_at == null ? '//' : $post->published_at }}</td>
                         <td><button class="btn btn-primary"><a class="text-white"
-                                    href="{{ route('admin.posts.edit', $post->id) }}">Edit</a></button></td>
+                                    href="{{ route('admin.posts.edit', $post) }}">Edit</a></button></td>
                         <td>
-                            <form action="{{route('admin.posts.destroy',$post->id)}}" method="post">
+                            <form action="{{route('admin.posts.destroy',$post)}}" method="post">
                                 @CSRF
                                 @method('delete')
                                 <button class="btn btn-danger" type="submit" onclick="return confirm('Delete this record?')"> Delete</button>

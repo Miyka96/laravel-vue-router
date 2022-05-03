@@ -24,8 +24,14 @@ class Post extends Model
             $slug =  $slug_base . '-' . $counter;
             $counter++;
             $post_present = Post::where('slug', $slug)->first();
-        }
+        }   
 
         return $slug;
     }
+
+    public function getRouteKeyName()
+    {
+       return 'slug';
+    }
+
 }

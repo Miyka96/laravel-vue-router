@@ -2,8 +2,6 @@
 
 @section('content')
 
-@section('content')
-
 <h1>Create a new post</h1>
 
 <form action="{{route('admin.posts.store')}}" method="post">
@@ -11,7 +9,7 @@
 
     <div class="form-group">
         <label for="title">Post title</label>
-        <input class="form-control" type="text" title="title" id="title" placeholder="Insert Post title" value="{{old('title')}}">
+        <input type="text" class="form-control" name="title" id="title" placeholder="Insert Post title" value="{{old('title')}}">
     </div>
     <div class="form-group">
         <label for="content">Post content</label>
@@ -22,7 +20,7 @@
     </div>
 
     <button class="btn btn-primary" type="submit">
-        Edit
+        Create
     </button>
 
     @if($errors->any())
@@ -38,7 +36,5 @@
     @endif
 
 </form>
-
-@endsection
 
 @endsection

@@ -14,7 +14,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->limit(30)->get();
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -34,10 +34,27 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:150',
+            'published_at' => 'nullable|date|before_or_equal:today',
+            'content' => 'required|string'
+        ]);
+
+        $data = $request->all();
+        $slug = Post::getUniqueSlug($data['title']);
+        $post = new Post();
+
+        $post->fill($data);
+        $post->slug = $slug;
+
+        $post->save();
+        return redirect()->route('admin.posts.index');
+
     }
+
 
     /**
      * Display the specified resource.
@@ -58,7 +75,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit');
     }
 
     /**

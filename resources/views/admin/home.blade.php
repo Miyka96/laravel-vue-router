@@ -1,16 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container-fluid">
-    <header>
-        <nav class="py-3">
-            <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link" href="{{route('admin.posts.index')}}">Posts index</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{route('admin.posts.create')}}">Create new Post</a></li>
-            </ul>
-        </nav>
-    </header>
-</div>
 
 <div class="container">
     <div class="row justify-content-center">

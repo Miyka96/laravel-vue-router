@@ -21,6 +21,8 @@
                 <td>Title</td>
                 <td>Slug</td>
                 <td>Published at</td>
+                <td></td>
+                <td></td>
             </tr>
         </thead>
 
@@ -33,13 +35,13 @@
                     <td>{{ $post->published_at }}</td>
                     <td><button class="btn btn-primary"><a class="text-white"
                                 href="{{ route('admin.posts.edit', $post->id) }}">Edit</a></button></td>
-                    {{-- <td>
-                        <form action="{{route('post.destroy',$post->id)}}" method="post">
+                    <td>
+                        <form action="{{route('admin.posts.destroy',$post->id)}}" method="post">
                             @CSRF
                             @method('delete')
-                            <button class="btn btn-primary" type="submit" onclick="return confirm('Delete this record?')"> Delete</button>
+                            <button class="btn btn-danger" type="submit" onclick="return confirm('Delete this record?')"> Delete</button>
                         </form>
-                    </td> --}}
+                    </td>
             </tr>
             @endforeach
         </tbody>

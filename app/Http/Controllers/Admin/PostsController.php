@@ -75,7 +75,7 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('admin.posts.edit');
+        return view('admin.posts.edit',compact('post'));
     }
 
     /**
@@ -87,7 +87,22 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:150',
+            'content' => 'required|string',
+            'published_at' =>'nullable|date|before_or_equal:today'
+        ]);
+
+        $data = $request->all();
+
+        if( $post->title != $data['title']){
+            $slug = Post::getUniqueSlug($data['title']);
+        }
+
+        $data['slug']=$slug;
+
+        $post->update($data);
+        return redirect()->route('admin.posts.index');
     }
 
     /**
@@ -98,6 +113,7 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index');
     }
 }

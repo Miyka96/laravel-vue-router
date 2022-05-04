@@ -15,6 +15,17 @@
     <div class="form-group">
         <label for="content">Post content</label>
         <textarea class="form-control" name="content" id="content">{{$post->content}}</textarea>
+    </div>
+    <div class="form-group">
+        <label for="category_id">Post Category</label>
+        <select class="form-control" id="category_id" name="category_id">
+            <option value="">No category</option>
+
+            @foreach($category as $cat)
+                <option value="{{$cat->id}}">{{$cat->name}}</option>  
+            @endforeach
+        </select>
+    </div>
     <div class="form-group">
         <label for="published_at">Published At</label>
         <input type="date" class="form-control" name="published_at" id="published_at" value="{{$post->published_at}}">

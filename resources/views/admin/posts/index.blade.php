@@ -9,6 +9,7 @@
                     <td>Id</td>
                     <td>Title</td>
                     <td>Slug</td>
+                    <td>Category</td>
                     <td>Published at</td>
                     <td></td>
                     <td></td>
@@ -21,7 +22,8 @@
                         <td>{{ $post->id }}</td>
                         <td class="text-capitalize">{{ $post->title }}</td>
                         <td>{{ $post->slug }}</td>
-                        <td>{{ $post->published_at == null ? '//' : $post->published_at }}</td>
+                        <td>{{ isset($post->category) ? $post->category->name : '--' }}</td>
+                        <td>{{ $post->published_at == null ? '--' : $post->published_at }}</td>
                         <td><button class="btn btn-primary"><a class="text-white"
                                     href="{{ route('admin.posts.edit', $post) }}">Edit</a></button></td>
                         <td>

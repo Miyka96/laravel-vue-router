@@ -97,9 +97,8 @@ class PostsController extends Controller
 
         if( $post->title != $data['title']){
             $slug = Post::getUniqueSlug($data['title']);
+            $data['slug']=$slug;
         }
-
-        $data['slug']=$slug;
 
         $post->update($data);
         return redirect()->route('admin.posts.index');

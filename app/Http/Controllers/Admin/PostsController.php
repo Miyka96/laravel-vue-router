@@ -28,7 +28,7 @@ class PostsController extends Controller
     public function create( Post $post)
     {
         $category = Category::all();
-        return view('admin.posts.create',compact('category'));
+        return view('admin.posts.create',compact('post','category'));
     }
 
     /**

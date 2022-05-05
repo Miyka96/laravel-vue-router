@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Category;
+use App\Tag;
 
 class PostsController extends Controller
 {
@@ -15,7 +16,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('category')->orderBy('created_at', 'desc')->limit(30)->get();
+        $posts = Post::with(['category','tags'])->orderBy('created_at', 'desc')->limit(30)->get();
         return view('admin.posts.index',compact('posts'));
     }
 
@@ -78,8 +79,9 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-        $category = Category::all();   
-        return view('admin.posts.edit',compact('post','category'));
+        $category = Category::all();  
+        $tags = Tag::all(); 
+        return view('admin.posts.edit',compact('post','category','tags'));
     }
 
     /**
@@ -95,7 +97,8 @@ class PostsController extends Controller
             'title' => 'required|string|max:150',
             'content' => 'required|string',
             'published_at' =>'nullable|date|before_or_equal:today',
-            'category_id' =>'nullable|exists:categories,id'
+            'category_id' =>'nullable|exists:categories,id',
+            // 'tags'=>'exists:tags,id'
         ]);
 
         $data = $request->all();
@@ -103,6 +106,13 @@ class PostsController extends Controller
         if( $post->title != $data['title']){
             $slug = Post::getUniqueSlug($data['title']);
             $data['slug']=$slug;
+        }
+
+        if(array_key_exists('tags',$data)){
+            $post->tags()->sync($data['tags']);
+        }
+        else{
+            $post->tags()->sync([]);
         }
 
         $post->update($data);

@@ -31,7 +31,7 @@
             @endforeach
         </div>
         @error('tags')
-            <div class="invalid-feedback">{{$message}}</div>
+            <div class="text-danger">{{$message}}</div>
         @enderror
 
 

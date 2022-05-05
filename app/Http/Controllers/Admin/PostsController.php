@@ -25,8 +25,8 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {   
+    public function create( Post $post)
+    {
         $category = Category::all();
         return view('admin.posts.create',compact('category'));
     }

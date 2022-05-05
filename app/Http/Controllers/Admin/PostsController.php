@@ -69,8 +69,7 @@ class PostsController extends Controller
 
     public function show(Post $post)
     {
-        todoo;
-        // proviamo a fare una show con dentro l'edit
+        return view('admin.posts.show', $post);
     }
 
     /**

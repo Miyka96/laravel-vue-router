@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.show')
 
-@section('content')
+@section('section')
 
 <div class="container">
     <h1>Edit post</h1>
@@ -9,7 +9,6 @@
         @csrf
         @method('put')
 
-        todoo 
         {{-- aggiungi un div error sotto ogni form-group e cancella l'ultimo, pls --}}
 
         {{-- title --}}

@@ -66,9 +66,11 @@ class PostsController extends Controller
      * @param  \App\Admin\Posts  $posts
      * @return \Illuminate\Http\Response
      */
+
     public function show(Post $post)
     {
-        //
+        todoo;
+        // proviamo a fare una show con dentro l'edit
     }
 
     /**
@@ -98,7 +100,7 @@ class PostsController extends Controller
             'content' => 'required|string',
             'published_at' =>'nullable|date|before_or_equal:today',
             'category_id' =>'nullable|exists:categories,id',
-            // 'tags'=>'exists:tags,id'
+            'tags.*'=>'exists:tags,id'
         ]);
 
         $data = $request->all();

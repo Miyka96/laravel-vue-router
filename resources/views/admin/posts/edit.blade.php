@@ -9,6 +9,9 @@
         @csrf
         @method('put')
 
+        todoo 
+        {{-- aggiungi un div error sotto ogni form-group e cancella l'ultimo, pls --}}
+
         {{-- title --}}
         <div class="form-group">
             <label for="title">Post title</label>
@@ -30,8 +33,8 @@
             </div>
             @endforeach
         </div>
-        @error('tags')
-            <div class="text-danger">{{$message}}</div>
+        @error('tags.*')
+            <div class="text-danger">'The selected tag is invalid</div>
         @enderror
 
 

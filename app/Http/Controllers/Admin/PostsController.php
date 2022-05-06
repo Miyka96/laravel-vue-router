@@ -28,6 +28,7 @@ class PostsController extends Controller
      */
     public function create( Post $post)
     {
+        // aggiungere id user altrimenti non si può creare un post
         $category = Category::all();
         return view('admin.posts.create',compact('post','category'));
     }

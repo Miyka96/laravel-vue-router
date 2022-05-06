@@ -42,6 +42,7 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
+        // aggiungere una select sulla pag. create dove selezionare solo gli user esistenti al momento sul db
         $request->validate([
             'title' => 'required|string|max:150',
             'published_at' => 'nullable|date|before_or_equal:today',

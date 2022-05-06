@@ -7,6 +7,7 @@
             <thead>
                 <tr>
                     <td>Id</td>
+                    <td>Author</td>
                     <td>Title</td>
                     <td>Slug</td>
                     <td>Category</td>
@@ -22,6 +23,10 @@
                     @foreach ($posts as $post)
                         {{-- id --}}
                         <td>{{ $post->id }}</td>
+                        {{-- author --}}
+                        <td>
+                            <a data-bs-toggle="tooltip" data-bs-placement="left" title="See all {{$post->user->name}} posts" href="{{route('admin.user.posts', $post->user->id)}}">{{$post->user->name}}</a>
+                        </td>
                         {{-- title --}}
                         <td class="text-capitalize">{{ $post->title }}</td>
                         {{-- slug --}}
@@ -41,7 +46,7 @@
                         <td>{{ $post->published_at == null ? '--' : $post->published_at }}</td>
                         {{-- edit button --}}
                         <td><button class="btn btn-primary"><a class="text-white"
-                                    href="{{ route('admin.posts.edit', $post) }}">Edit</a></button></td>
+                                    href="{{ route('admin.posts.edit', $post) }}">Edit/Preview</a></button></td>
                         {{-- delete button --}}
                         <td>
                             <form action="{{route('admin.posts.destroy',$post)}}" method="post">

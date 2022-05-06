@@ -13,7 +13,8 @@ class Post extends Model
         'published_at',
         'slug',
         'category_id',
-        'tag_id'
+        'tag_id',
+        'user_id'
     ];
 
     public static function getUniqueSlug($title){

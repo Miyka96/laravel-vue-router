@@ -6,6 +6,7 @@ use App\Post;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Tag;
+use App\User;
 
 class PostsController extends Controller
 {
@@ -16,7 +17,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['category','tags'])->orderBy('created_at', 'desc')->limit(30)->get();
+        $posts = Post::with(['category','tags','user'])->orderBy('created_at', 'desc')->limit(30)->get();
         return view('admin.posts.index',compact('posts'));
     }
 

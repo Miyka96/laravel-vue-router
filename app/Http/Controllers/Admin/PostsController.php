@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Tag;
 use App\User;
+use softDeletes;
 
 class PostsController extends Controller
 {
@@ -28,10 +29,10 @@ class PostsController extends Controller
      */
     public function create( Post $post)
     {
-        // aggiungere id user altrimenti non si può creare un post
+        $users= User::all();
         $category = Category::all();
         $tags = Tag::all(); 
-        return view('admin.posts.create',compact('post','category','tags'));
+        return view('admin.posts.create',compact('post','category','tags','users'));
     }
 
     /**

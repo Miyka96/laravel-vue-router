@@ -8,6 +8,8 @@
     <form action="{{route('admin.posts.store')}}" method="post">
         @csrf
 
+        {{-- title --}}
+
         <div class="form-group">
             <label for="title">Post title</label>
             <input type="text" class="form-control" name="title" id="title" placeholder="Insert Post title" value="{{old('title')}}">
@@ -17,6 +19,17 @@
             <textarea class="form-control" name="content" id="content">{{old('content')}}</textarea>
         </div>
 
+        {{-- user --}}
+        <div class="form-group">
+            <label for="user_id">User</label>
+            <select class="form-control" id="user_id" name="user_id">
+                @foreach($users as $user)
+                    <option value="{{ $user->id}}"> {{$user->name}}</option>  
+                @endforeach
+            </select>
+        </div>
+
+        {{-- tags --}}
         <label>Tags</label>
         <div class="d-flex" style="gap: 1rem;">
             @foreach($tags as $tag)
@@ -30,6 +43,7 @@
             <div class="text-danger">'The selected tag is invalid</div>
         @enderror
 
+        {{-- category --}}
         <div class="form-group">
             <label for="category_id">Post Category</label>
             <select class="form-control" id="category_id" name="category_id">
@@ -40,11 +54,13 @@
             </select>
         </div>
 
+        {{-- published at --}}
         <div class="form-group">
             <label for="published_at">Published At</label>
             <input type="date" class="form-control" name="published_at" id="published_at" value="{{old('published_at')}}">
         </div>
 
+        {{-- create btn --}}
         <button class="btn btn-primary" type="submit">
             Create
         </button>

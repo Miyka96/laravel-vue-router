@@ -35,6 +35,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item @if(Route::is('admin.posts.index'))active @endif"><a class="nav-link" href="{{route('admin.posts.index')}}">Posts index</a></li>
                         <li class="nav-item @if(Route::is('admin.posts.create'))active @endif"><a class="nav-link" href="{{route('admin.posts.create')}}">Create new Post</a></li>
+                        <li class="nav-item @if(Route::is('admin.trash'))active @endif"><a class="nav-link" href="{{route('admin.trash')}}">Trash</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

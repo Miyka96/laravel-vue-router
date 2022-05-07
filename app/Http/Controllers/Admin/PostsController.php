@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\Tag;
 use App\User;
-use softDeletes;
+
 
 class PostsController extends Controller
 {

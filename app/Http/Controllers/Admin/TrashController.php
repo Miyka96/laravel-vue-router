@@ -17,7 +17,7 @@ class TrashController extends Controller
         $deletedItems = Post::onlyTrashed()->get();
         return view('admin.posts.trash',compact('deletedItems'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *

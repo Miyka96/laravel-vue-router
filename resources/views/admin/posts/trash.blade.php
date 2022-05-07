@@ -50,6 +50,13 @@
                                 <button class="btn btn-info" type="submit"> Restore this post</button>
                             </form>
                         </td>
+                        {{-- force delete button --}}
+                        <td>
+                            <form action="{{route('admin.forceDelete',$post->id)}}" method="post">
+                                @CSRF
+                                <button class="btn btn-danger" type="submit"> Permanently delete this post</button>
+                            </form>
+                        </td>
                 </tr>
                 @endforeach
             </tbody>

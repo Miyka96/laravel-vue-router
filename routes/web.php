@@ -27,11 +27,15 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group(function () {
         Route::get('/home', 'HomeController@index')->name('home');
+        Route::resource('posts','PostsController');
         Route::get('/user/{user}/posts','UserPostController@index')->name('user.posts');
         Route::get('/trash','TrashController@index')->name('trash');
         Route::any('/post/{post}/restore',[
             'uses' => 'RestoreController@restore',
             'as' => 'restore'
         ]);
-        Route::resource('posts','PostsController');
+        Route::any('/post/{post}/forcedelete',[
+            'uses' => 'ForceDeleteController@destroy',
+            'as' => 'forceDelete'
+        ]);
     });

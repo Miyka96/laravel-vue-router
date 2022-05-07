@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
-use Illuminate\Http\Request;
+
 
 class RestoreController extends Controller
 {
@@ -11,7 +11,8 @@ class RestoreController extends Controller
     {
 
         Post::where('id', $id)->withTrashed()->restore();
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.trash');
     }
+
 }
 

@@ -30,7 +30,8 @@ class PostsController extends Controller
     {
         // aggiungere id user altrimenti non si può creare un post
         $category = Category::all();
-        return view('admin.posts.create',compact('post','category'));
+        $tags = Tag::all(); 
+        return view('admin.posts.create',compact('post','category','tags'));
     }
 
     /**
@@ -47,7 +48,7 @@ class PostsController extends Controller
             'title' => 'required|string|max:150',
             'published_at' => 'nullable|date|before_or_equal:today',
             'content' => 'required|string',
-            'category_id' =>'nullable|exists:categories,id'
+            'category_id' =>'nullable|exists:categories,id',
         ]);
 
         $data = $request->all();
@@ -58,6 +59,7 @@ class PostsController extends Controller
         $post->slug = $slug;
 
         $post->save();
+
         return redirect()->route('admin.posts.index');
 
     }

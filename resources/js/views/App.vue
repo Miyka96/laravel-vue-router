@@ -1,12 +1,33 @@
 <template>
     <div>
-        <h1 class="bg-blue-700">Titolo</h1>
+        <header>
+            <nav>
+                <ul>
+                    <li>Home</li>
+                    <li>Posts</li>
+                    <li>Categories</li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <PostGrid/>
+        </main>
+
+        <footer>
+            
+        </footer>
     </div>
 </template>
 
 <script>
+
+    import PostGrid from './Posts.index.vue'
+
     export default {
-        
+        components:{
+            PostGrid,
+        }
     }
 </script>
 

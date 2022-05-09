@@ -32,7 +32,7 @@ class PostSeeder extends Seeder
             $post->slug = Str::slug($post->title);
             $post->content = $faker->paragraphs(10, true);
             $post->published_at = $faker->randomElement([null, $faker->dateTime()]);
-            $post->category_id = $faker->optional()->randomElement($categoriesId);
+            $post->category_id = $faker->randomElement($categoriesId);
             $user= User::inRandomOrder()->first();
             $post->user_id = $user->id;
 

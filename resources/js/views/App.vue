@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="app bg-neutral-300 text-zinc-900">
         <header>
             <nav>
                 <ul>
@@ -15,7 +15,7 @@
         </main>
 
         <footer>
-            
+            footer
         </footer>
     </div>
 </template>
@@ -32,5 +32,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+    .app{
+        min-height: 100vh;
+    }
 </style>

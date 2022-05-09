@@ -39,3 +39,7 @@ Route::middleware('auth')
             'as' => 'forceDelete'
         ]);
     });
+
+Route::fallback(function(){
+    return view('guest.home');
+});

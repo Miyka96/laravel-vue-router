@@ -21,5 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('api')->group(function () {
     Route::resource('/posts','Postcontroller')->only(['index', 'show']);
     Route::get('categories', 'CategoryController@index');
-    Route::get('/categories/{category}', 'CategoryController@archive');
+    Route::get('/categories/{category}/posts', 'CategoryController@archive');
 });

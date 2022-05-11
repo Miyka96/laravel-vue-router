@@ -1949,7 +1949,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      category: null,
+      posts: []
+    };
+  },
+  methods: {
+    fetchPostsByCategorySlug: function fetchPostsByCategorySlug() {
+      var _this = this;
+
+      axios.get("/api/categories/".concat(this.route.params.slug, "/posts")).then(function (res) {
+        var _res$data = res.data,
+            posts = _res$data.posts,
+            category = _res$data.category;
+        _this.posts = posts;
+        _this.category = category;
+      }); //catch
+    }
+  },
+  beforeMount: function beforeMount() {
+    this.fetchPostsByCategorySlug();
+  }
+});
 
 /***/ }),
 
@@ -3301,7 +3329,22 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._v("\n\n    " + _vm._s(_vm.$route.params.slug) + "\n\n"),
+    _vm.category ? _c("h1", [_vm._v(_vm._s(_vm.category.name))]) : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "ul",
+      _vm._l(_vm.posts, function (post) {
+        return _c(
+          "router-link",
+          {
+            key: post.id,
+            attrs: { to: { name: "posts.show", params: { slug: post.slug } } },
+          },
+          [_vm._v("\n            " + _vm._s(post.title) + "\n        ")]
+        )
+      }),
+      1
+    ),
   ])
 }
 var staticRenderFns = []

@@ -94,7 +94,7 @@ class CategoryController extends Controller
 
         return response()->json([
             'category' => $category,
-            'posts' => $category->post,
+            'posts' => $category->posts,
             'success' => true
         ]);
     }

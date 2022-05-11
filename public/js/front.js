@@ -1981,6 +1981,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1990,7 +2005,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       posts: [],
       last_page: 0,
-      current_page: 1
+      current_page: 1,
+      categories: []
     };
   },
   methods: {
@@ -1998,7 +2014,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('/api/posts', {
+      axios.get("/api/posts", {
         params: {
           page: page
         }
@@ -2013,10 +2029,21 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         console.warn(err);
       });
+    },
+    fetchCategories: function fetchCategories() {
+      var _this2 = this;
+
+      axios.get("/api/categories").then(function (res) {
+        var categories = res.data.categories;
+        _this2.categories = categories;
+      })["catch"](function (err) {
+        console.warn(err);
+      });
     }
   },
   mounted: function mounted() {
     this.fetchPosts();
+    this.fetchCategories();
   }
 });
 
@@ -3276,7 +3303,28 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "ul",
+        { staticClass: "flex align-center gap-4 my-8 text-xl flex-wrap" },
+        _vm._l(_vm.categories, function (category) {
+          return _c(
+            "li",
+            {
+              key: category.id,
+              staticClass:
+                "rounded-full border border-white cursor-pointer py-1 px-3 text-teal-700 whitespace-nowrap",
+            },
+            [
+              _vm._v(
+                "\n                " + _vm._s(category.name) + "\n            "
+              ),
+            ]
+          )
+        }),
+        0
+      ),
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -3311,7 +3359,7 @@ var render = function () {
                 },
               },
             },
-            [_vm._v(_vm._s(n))]
+            [_vm._v("\n                " + _vm._s(n) + "\n            ")]
           )
         }),
         0
@@ -3319,16 +3367,7 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v("Ultimi post")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

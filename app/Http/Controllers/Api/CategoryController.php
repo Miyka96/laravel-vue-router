@@ -87,4 +87,15 @@ class CategoryController extends Controller
     {
         //
     }
+
+    public function archive($slug)
+    {
+        $category= Category::with('posts')->where('slug','=', $slug)->first();
+
+        return response()->json([
+            'category' => $category,
+            'posts' => $category->post,
+            'success' => true
+        ]);
+    }
 }

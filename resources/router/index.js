@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 // import all pages 
 import Posts from '../js/pages/Posts.index.vue'
 import Contact from '../js/pages/Contact.vue'
+import CategoriesArchive from '../js/pages/Categories.archive.vue'
 
 const routes = [
     {
@@ -16,6 +17,11 @@ const routes = [
         path: '/contact',
         name: 'contact',
         component: Contact
+    },
+    {
+        path: '/categories/:slug',
+        name: 'categories.archive',
+        component: CategoriesArchive
     }
 ]
 

@@ -2,10 +2,11 @@
     <div>
         <div class="container">
             <ul class="flex align-center gap-4 my-8 text-xl flex-wrap">
-                <li class="rounded-full border border-white cursor-pointer py-1 px-3 text-teal-700 whitespace-nowrap" 
+                <router-link :to="{name: 'categories.archive' , params:{slug:category.slug} }" tag="li"
+                class="rounded-full border border-white cursor-pointer py-1 px-3 text-teal-700 whitespace-nowrap" 
                 v-for="category in categories" :key="category.id">
                     {{ category.name }}
-                </li>
+                </router-link>
             </ul>
         </div>
         <div

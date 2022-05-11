@@ -2,10 +2,10 @@
     <div class="app bg-neutral-300 text-zinc-900">
         <header>
             <nav>
-                <ul>
-                    <li>Home</li>
-                    <li>Posts</li>
-                    <li>Categories</li>
+                <ul class="flex justify-end items-center gap-6 text-xl mb-8 py-4 px-4 text-neutral-500">
+                <router-link :to="{name: 'post.index' }" tag="li" class="cursor-pointer"> Home </router-link>
+                <router-link :to="{name: 'categories.archive' }" tag="li" class="cursor-pointer"> Categories </router-link>
+                <router-link :to="{name: 'contact' }" tag="li" class="cursor-pointer"> Contact </router-link>
                 </ul>
             </nav>
         </header>

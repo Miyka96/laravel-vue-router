@@ -17,4 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/posts','Api\Postcontroller@index');
+
+Route::namespace('api')->group(function () {
+    Route::resource('/posts','Postcontroller')->only(['index', 'show']);
+});

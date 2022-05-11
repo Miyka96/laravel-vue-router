@@ -11,7 +11,7 @@
         </header>
 
         <main>
-            <PostGrid/>
+            <router-view> </router-view>
         </main>
 
         <footer>
@@ -22,11 +22,8 @@
 
 <script>
 
-    import PostGrid from './Posts.index.vue'
-
     export default {
         components:{
-            PostGrid,
         }
     }
 </script>

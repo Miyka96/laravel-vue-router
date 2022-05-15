@@ -22,7 +22,8 @@ const routes = [
         path: '/categories/:slug',
         name: 'categories.archive',
         component: CategoriesArchive
-    }
+    },
+    // todoo post show route
 ]
 
 const router = new VueRouter({

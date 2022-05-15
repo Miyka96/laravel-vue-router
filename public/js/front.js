@@ -1941,6 +1941,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_PostCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/PostCard.vue */ "./resources/js/components/PostCard.vue");
 //
 //
 //
@@ -1954,7 +1955,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    PostCard: _components_PostCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       category: null,
@@ -1965,7 +1977,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchPostsByCategorySlug: function fetchPostsByCategorySlug() {
       var _this = this;
 
-      axios.get("/api/categories/".concat(this.route.params.slug, "/posts")).then(function (res) {
+      axios.get("/api/categories/".concat(this.$route.params.slug, "/posts")).then(function (res) {
         var _res$data = res.data,
             posts = _res$data.posts,
             category = _res$data.category;
@@ -2108,7 +2120,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -3328,11 +3339,19 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.category ? _c("h1", [_vm._v(_vm._s(_vm.category.name))]) : _vm._e(),
+  return _c("div", { staticClass: "container" }, [
+    _vm.category
+      ? _c("h1", { staticClass: "text-3xl mb-5" }, [
+          _vm._v(_vm._s(_vm.category.name)),
+        ])
+      : _vm._e(),
     _vm._v(" "),
     _c(
-      "ul",
+      "div",
+      {
+        staticClass:
+          "container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8",
+      },
       _vm._l(_vm.posts, function (post) {
         return _c(
           "router-link",
@@ -3340,7 +3359,50 @@ var render = function () {
             key: post.id,
             attrs: { to: { name: "posts.show", params: { slug: post.slug } } },
           },
-          [_vm._v("\n            " + _vm._s(post.title) + "\n        ")]
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "post card rounded-lg bg-gray-100 shadow-md overflow-hidden",
+              },
+              [
+                _c("img", {
+                  staticClass: "w-full object-cover",
+                  attrs: { src: "https://picsum.photos/450/250" },
+                }),
+                _vm._v(" "),
+                _c("div", { staticClass: "card__body p-6" }, [
+                  _c("h4", { staticClass: "post__title mb-4 text-xl" }, [
+                    _vm._v(_vm._s(post.title)),
+                  ]),
+                  _vm._v(" "),
+                  post.category
+                    ? _c("p", { staticClass: "text-teal-600 mb-4 font-bold" }, [
+                        _vm._v(_vm._s(post.category.name)),
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    { staticClass: "tags flex gap-4 items-center flex-wrap" },
+                    _vm._l(post.tags, function (tag) {
+                      return _c(
+                        "li",
+                        {
+                          key: tag.id,
+                          staticClass:
+                            "tag bg-teal-800/30 rounded-full block px-4 text-xs",
+                        },
+                        [_vm._v(_vm._s(tag.name))]
+                      )
+                    }),
+                    0
+                  ),
+                ]),
+              ]
+            ),
+          ]
         )
       }),
       1
@@ -3504,15 +3566,6 @@ var render = function () {
                 attrs: { to: { name: "post.index" }, tag: "li" },
               },
               [_vm._v(" Home ")]
-            ),
-            _vm._v(" "),
-            _c(
-              "router-link",
-              {
-                staticClass: "cursor-pointer",
-                attrs: { to: { name: "categories.archive" }, tag: "li" },
-              },
-              [_vm._v(" Categories ")]
             ),
             _vm._v(" "),
             _c(
@@ -19312,7 +19365,8 @@ var routes = [{
   path: '/categories/:slug',
   name: 'categories.archive',
   component: _js_pages_Categories_archive_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
-}];
+} // todoo post show route
+];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: routes
